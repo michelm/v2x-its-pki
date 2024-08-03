@@ -14,6 +14,8 @@ The Public Key Infrastructure consists of following services:
 
 Vehicles and roadside units (rsu) can use these services to obtain certificates for secure communication between each other; i.e. every message exchanged between vehicles and roadside units (v2x) is signed using a private key. The public key is contained within a certificate which also contains a list of permissions that have been granted by Authorization Authority to the sender to send specific message types and message content. This allows the receiver to verify the authenticity of the signed message as well as proof of authorization for the sender to send the message.
 
+![v2x-its-pki-overview](https://raw.githubusercontent.com/michelm/v2x-its-pki/master/v2x-its-pki-overview.drawio.png)
+
 ### Trust List Manager (TLM)
 
 The trust list manager is responsible for maintaining a list of revoked certificates. This list is used by the vehicles and roadside units to verify the validity of signatures and certificates of messages received from other vehicles and/or roadside units.
