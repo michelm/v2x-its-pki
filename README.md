@@ -1,6 +1,6 @@
 # v2x-its-pki
 
-A Public Key Infrastructure (**pki**) providing certificates for cooperative vehicles and roadside equipment using _Dedicated Short Range Communication_ (DSRC) technology; e.g. **c-v2x** or **its-g5**.
+A Public Key Infrastructure (**pki**) providing management of certificate chains for cooperative vehicles and roadside equipment using _Dedicated Short Range Communication_ (DSRC) technology; e.g. **c-v2x** or **its-g5**.
 
 ## Overview
 
@@ -12,11 +12,11 @@ The Public Key Infrastructure consists of following services:
 - Authorization Authority (AA),
 - Trust List Manager (TLM) and Root Certificate Authority (RCA),
 
-Vehicles and roadside units (rsu) can use these services to obtain certificates for secure communication between each other; i.e. every message exchanged between vehicles and roadside units (v2x) is signed with a certificate. Using this mechanism the receiving party can verify the authenticity of the sender as well as the granted permissions to send the message or parts thereof.
+Vehicles and roadside units (rsu) can use these services to obtain certificates for secure communication between each other; i.e. every message exchanged between vehicles and roadside units (v2x) is signed using a private key. The public key is contained within a certificate which also contains a list of permissions that have been granted by Authorization Authority to the sender to send specific message types and message content. This allows the receiver to verify the authenticity of the signed message as well as proof of authorization for the sender to send the message.
 
 ### Trust List Manager (TLM))
 
-The trust list manager is responsible for maintaining a list of revoked certificates. This list is used by the vehicles and roadside units to verify the validity of signatures and  certificates of messages received from other vehicles and/or roadside units.
+The trust list manager is responsible for maintaining a list of revoked certificates. This list is used by the vehicles and roadside units to verify the validity of signatures and certificates of messages received from other vehicles and/or roadside units.
 
 ### Certificate Trust List / Root Certificate Authority (RCA)
 

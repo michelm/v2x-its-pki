@@ -20,7 +20,6 @@ if [ ! -z "$organization" ] ; then
     args="$args --organization=$organization"
 fi
 
-# Create the project if it does not exist
 project_count=$(gcloud projects list | (grep "^$project " || true) | wc -l)
 if [ $project_count -gt 0 ] ; then
     echo "[INFO] project $project exists"
@@ -28,6 +27,9 @@ else
     echo "[INFO] creating project($project $args)"
     gcloud projects create $project $args
 fi
+
+project_number=$(gcloud projects describe v2x-its-pki | grep "^projectNumber" | awk '{print $2}' | sed "s/'//g")
+echo "[INFO] project(id=$project, number=$project_number)"
 
 echo "[INFO] set $project as active project"
 gcloud config set project $project
@@ -55,3 +57,8 @@ gcloud services enable \
 
 echo "[INFO] set project($project) default quota's"
 gcloud auth application-default set-quota-project $project
+
+echo "[INFO] add project($project) iam-policy-binding for cloud build"
+gcloud projects add-iam-policy-binding $project \
+    --member=serviceAccount:${project_number}-compute@developer.gserviceaccount.com \
+    --role=roles/cloudbuild.builds.builder
