@@ -14,7 +14,7 @@ The Public Key Infrastructure consists of following services:
 
 Vehicles and roadside units (rsu) can use these services to obtain certificates for secure communication between each other; i.e. every message exchanged between vehicles and roadside units (v2x) is signed using a private key. The public key is contained within a certificate which also contains a list of permissions that have been granted by Authorization Authority to the sender to send specific message types and message content. This allows the receiver to verify the authenticity of the signed message as well as proof of authorization for the sender to send the message.
 
-### Trust List Manager (TLM))
+### Trust List Manager (TLM)
 
 The trust list manager is responsible for maintaining a list of revoked certificates. This list is used by the vehicles and roadside units to verify the validity of signatures and certificates of messages received from other vehicles and/or roadside units.
 
@@ -32,12 +32,26 @@ The _Authorization Authority_ (AA) provides authorization tickets (AT); i.e. cer
 
 ## Use cases
 
-TODO
+This solution can be used in following use cases:
+
+- As a **standalone PKI** in simulation environments or early development stages,
+- In a production environment acting as PKI provider and registered as a **vendor PKI** in the [global certificate trust list (CTL)](https://cpoc.jrc.ec.europa.eu/),
+
+**Remark**: only former is supported at this time.
 
 ## Deployment scenarios
 
-TODO
+Following deployment environments are supported:
+
+- Google Cloud Platform (GCP),
+
+Other deployment environments can be supported on request.
 
 ## Specifications and references
 
-TODO
+Following specifications and references apply:
+
+- [ETSI TS 102 940: "Intelligent Transport Systems (ITS); Security; ITS communications security architecture and security management; Release 2"](https://www.etsi.org/deliver/etsi_ts/102900_102999/102940/02.01.01_60/ts_102940v020101p.pdf)
+- [ETSI TS 102 941: "Intelligent Transport Systems (ITS); Security; Trust and Privacy Management; Release 2"](https://www.etsi.org/deliver/etsi_ts/102900_102999/102941/02.02.01_60/ts_102941v020201p.pdf)
+- [ETSI TS 103 097: "Intelligent Transport Systems (ITS); Security; Security header and certificate formats; Release 2"](https://www.etsi.org/deliver/etsi_ts/103000_103099/103097/02.01.01_60/ts_103097v020101p.pdf)
+- IEEE 1609.2: "IEEE Standard for Wireless Access in Vehicular Environments—Security Services for Applications and Management Messages"
