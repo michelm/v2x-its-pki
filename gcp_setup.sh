@@ -5,7 +5,7 @@
 #
 set -e -o pipefail
 
-project=${V2XPKI_PROJECT_ID:-'v2x-its-pki'}
+project=${V2XPKI_PROJECT_ID:-'vee2peekayai'}
 name=${V2XPKI_PROJECT_NAME:-$poject}
 folder=$V2XPKI_FOLDER_ID
 organization=$V2XPKI_ORGANIZATION_ID
@@ -54,6 +54,7 @@ gcloud services enable \
     cloudbuild.googleapis.com \
     containerregistry.googleapis.com \
     iam.googleapis.com \
+    storage.googleapis.com
 
 echo "[INFO] set project($project) default quota's"
 gcloud auth application-default set-quota-project $project
@@ -62,3 +63,5 @@ echo "[INFO] add project($project) iam-policy-binding for cloud build"
 gcloud projects add-iam-policy-binding $project \
     --member=serviceAccount:${project_number}-compute@developer.gserviceaccount.com \
     --role=roles/cloudbuild.builds.builder
+
+export GOOGLE_CLOUD_PROJECT=$project
