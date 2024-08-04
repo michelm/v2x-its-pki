@@ -5,10 +5,48 @@
 #
 set -e -o pipefail
 
+usage="Usage: $(basename $0) [-p project] [-n name] [-f folder] [-o organization]"
+
 project=${V2XPKI_PROJECT_ID:-'vee2peekayai'}
 name=${V2XPKI_PROJECT_NAME:-$poject}
 folder=$V2XPKI_FOLDER_ID
 organization=$V2XPKI_ORGANIZATION_ID
+
+while getopts ':p:n:f:o:h' opt; do
+  case "$opt" in
+    p)
+      project="$OPTARG"
+      ;;
+
+    n)
+      name="$OPTARG"
+      ;;
+
+    f)
+      folder="$OPTARG"
+      ;;
+
+    o)
+      organization="$OPTARG"
+      ;;
+
+    h)
+      echo $usage
+      exit 0
+      ;;
+
+    :)
+      echo -e "Option requires an argument.\n$usage"
+      exit 1
+      ;;
+
+    ?)
+      echo -e "Invalid command option.\n$usage"
+      exit 1
+      ;;
+  esac
+done
+shift "$(($OPTIND -1))"
 
 args="--enable-cloud-apis --name=$name $args"
 
